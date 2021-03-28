@@ -1,0 +1,24 @@
+trait Greeter {
+  def greet(name: String): Unit =
+    println("Hello " + name + "!")
+}
+
+class DefaultGreeter extends Greeter
+
+class CustomizableGreeter(prefix: String, postfix: String) extends Greeter {
+  override def greet(name: String): Unit = {
+    println(prefix + name + postfix)
+  }
+}
+
+val greeter = new DefaultGreeter()
+greeter.greet("samg")
+
+val customGreeter = new CustomizableGreeter("Hello, Scala ", "!!!")
+customGreeter.greet("sang")
+
+// main 
+object Main{
+  def main(args: Array[String]): Unit =
+    println("Hello, Scala developer")
+}

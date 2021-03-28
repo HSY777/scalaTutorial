@@ -1,0 +1,25 @@
+class Point{ // 'class Point(x: Int, y: Int)' << x, y is private value
+  private var _x = 0
+  private var _y = 0
+  private var bound = 100
+  
+  def x = _x
+  def x_= (newValue: Int): Unit = {
+    if (newValue < bound) _x = newValue else printWarning
+  }
+  
+  def y = _y
+  def y_= (newValue: Int): Unit = {
+    if (newValue < bound) _y = newValue else printWarning
+  }
+ 
+ 
+ private def printWarning = println("Warning: Out of bounds") 
+}
+
+val point1 = new Point
+point1.x1 = 99
+println(point1.x)
+point1.y1 = 101
+println(point1.y)
+

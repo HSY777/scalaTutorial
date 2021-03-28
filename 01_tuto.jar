@@ -1,0 +1,83 @@
+// expressions
+1 + 1
+
+// value >> not re-compute it
+val x: Int = 1 + 1
+
+// variables >> can re=compute it
+var y: Int = 1 + 1
+y = 3
+println("y= ", y)
+
+// Blocks >> The result of the last expression in the block 
+println({
+  val x = 1 + 1
+  x + 1
+}) // 3
+
+// Functions >> define an anonymous function
+val addOne = (x: Int) => x + 1
+println(addOne(1))
+
+val add1 = (a: Int, b: Int) => a + b
+println(add1(1, 3))
+
+val printHello = () => println("Hello")
+printHello()
+
+// Methods >> methods are define with the "def" keyword
+def add2(x: Int, y: Int): Int = x + y
+println(add2(1, 6))
+//can take multiple parameter lists
+def addThenMultiply(x: Int, y: Int)(multiplier: Int): Int = (x + y) * multiplier
+println(addThenMultiply(1, 2)(3)) //9
+
+def name: String = System.getProperty("user.name")
+println("Hello " + name + " !!") //Hello null !!
+
+def getSquareString(input: Double): String = {
+  val square = input * input
+  square.toString
+}
+println(getSquareString(2)) //4
+
+// class
+class Greeter(prefix: String, suffix: String){
+  def greet(name: String): Unit =
+    println(prefix + name + suffix)
+}
+var greeter = new Greeter("Hello ", "!")
+greeter.greet("Scala developer") //Hello Scala developer!
+
+//case class >>case classes are immutable, without "new" keyword
+case class Point(x: Int, y: Int)
+
+val point = Point(1, 2) //point and anotherPoint are smae
+val anotherPoint = Point(1, 2) // point and yetAnotherPoint are different
+val yetAnotherPoint = Point(2, 2)
+
+if (point == anotherPoint){
+  println(point + " and " + anotherPoint + " are the smae. ")
+} else {
+  println(point + " and " + anotherPoint + " are different. ")
+} //Point(1,2) and Point(1,2) are the smae. 
+
+if (point == yetAnotherPoint){
+  println(point + " and " + yetAnotherPoint + " are the smae. ")
+} else {
+  println(point + " and " + yetAnotherPoint + " are different. ")
+} //Point(1,2) and Point(2,2) are different.
+
+//Objects >> 이름 자체로 참조가능
+object IdFactory{
+  private var counter = 0
+  def create(): Int = {
+    counter += 1
+    counter
+  }
+}
+
+val newId: Int = IdFactory.create()
+println(newId) // 1
+val newerId: Int = IdFactory.create()
+println(newerId) // 2

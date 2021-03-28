@@ -1,0 +1,23 @@
+abstract class AbsIterator {
+  type T //generic type == '[]'??
+  def hasNext: Boolean // called standard iterator
+  def next(): T
+}
+
+class StringIterator(s: String) extends AbsIterator {
+  type T = Char
+  private var i = 0
+  def hasNext: Boolean = i < s.length
+  def next() = {
+    val ch = s charAt i //s 의 캐릭터 하나하나를 i에 넣으면서 ch에 저장하라
+    i += 1
+    ch
+  }
+}
+
+val iterator = new StringIterator("Hello")
+println(iterator.next())
+println(iterator.next())
+println(iterator.next())
+println(iterator.next())
+println(iterator.next())
